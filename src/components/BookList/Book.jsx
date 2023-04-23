@@ -14,7 +14,10 @@ const Book = ({
   cover_img,
 }) => {
   const [open, setOpen] = useState(false);
-  const handleOpen = () => {setOpen(true)};
+  const handleOpen = (event) => {
+    event.stopPropagation();
+    setOpen(true);
+  };
   const handleClose = () => {
     setOpen(false);
   };

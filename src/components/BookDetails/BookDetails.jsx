@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import Loading from "../Loader/Loader";
 import coverImg from "../../images/cover_not_found.jpg";
 import "./BookDetails.css";
@@ -8,7 +8,6 @@ import { Box } from "@mui/system";
 const URL = "https://openlibrary.org/works/";
 
 const BookDetails = ({id}) => {
-  const navigate = useNavigate();
 
   const [loading, setLoading] = useState(false);
   const [book, setBook] = useState(null);
