@@ -25,6 +25,7 @@ const Book = ({
 
   return (
     <div className="book-item flex flex-column flex-sb" onClick={handleOpen}>
+      {/* Kitap detay bilgilerini listelemek için modal oluşturuldu */}
       <Modal
         open={open}
         onClose={handleClose}

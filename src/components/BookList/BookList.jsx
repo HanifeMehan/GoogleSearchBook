@@ -17,7 +17,7 @@ const BookList = () => {
         : coverImg,
     };
   });
-
+//Veriler alınana kadarki süreç içim loading eklendi
   if (loading) return <Loading />;
 
   return (
