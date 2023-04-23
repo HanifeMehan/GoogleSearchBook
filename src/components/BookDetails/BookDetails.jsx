@@ -1,14 +1,13 @@
-import React, { useState, useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
-import Loading from '../Loader/Loader';
-import coverImg from '../../images/cover_not_found.jpg';
-import './BookDetails.css';
-import { FaArrowLeft } from 'react-icons/fa';
+import React, { useState, useEffect } from "react";
+import { useParams, useNavigate } from "react-router-dom";
+import Loading from "../Loader/Loader";
+import coverImg from "../../images/cover_not_found.jpg";
+import "./BookDetails.css";
+import { Box } from "@mui/system";
 
-const URL = 'https://openlibrary.org/works/';
+const URL = "https://openlibrary.org/works/";
 
-const BookDetails = () => {
-  const { id } = useParams();
+const BookDetails = ({id}) => {
   const navigate = useNavigate();
 
   const [loading, setLoading] = useState(false);
@@ -33,18 +32,20 @@ const BookDetails = () => {
           } = data;
 
           const newBook = {
-            description: description ? description.value : 'No description found',
+            description: description
+              ? description.value
+              : "No description found",
             title,
             cover_img: covers
               ? `https://covers.openlibrary.org/b/id/${covers[0]}-L.jpg`
               : coverImg,
             subject_places: subject_places
-              ? subject_places.join(', ')
-              : 'No subject places found',
+              ? subject_places.join(", ")
+              : "No subject places found",
             subject_times: subject_times
-              ? subject_times.join(', ')
-              : 'No subject times found',
-            subjects: subjects ? subjects.join(', ') : 'No subjects found',
+              ? subject_times.join(", ")
+              : "No subject times found",
+            subjects: subjects ? subjects.join(", ") : "No subjects found",
           };
 
           setBook(newBook);
@@ -67,44 +68,39 @@ const BookDetails = () => {
   }
 
   return (
-    <section className='book-details'>
-      <div className='container'>
-        <button
-          type='button'
-          className='flex flex-c back-btn'
-          onClick={() => navigate('/book')}
-        >
-          <FaArrowLeft size={22} />
-          <span className='fs-18 fw-6'>Go Back</span>
-        </button>
-
-        <div className='book-details-content grid'>
-          <div className='book-details-img'>
-            <img src={book?.cover_img} alt='cover img' />
-          </div>
-          <div className='book-details-info'>
-            <div className='book-details-item title'>
-              <span className='fw-6 fs-24'>{book?.title}</span>
-            </div>
-            <div className='book-details-item description'>
-              <span>{book?.description}</span>
-            </div>
-            <div className='book-details-item'>
-              <span className='fw-6'>Subject Places: </span>
-              <span className='text-italic'>{book?.subject_places}</span>
-            </div>
-            <div className='book-details-item'>
-              <span className='fw-6'>Subject Times: </span>
-              <span className='text-italic'>{book?.subject_times}</span>
-            </div>
-            <div className='book-details-item'>
-              <span className='fw-6'>Subjects: </span>
-              <span>{book?.subjects}</span>
+    <Box className="homeScreenModal">
+      <div className="homeFilterContainer">
+        <section className="book-details">
+          <div className="container">
+            <div className="book-details-content grid">
+              <div className="book-details-img">
+                <img src={book?.cover_img} alt="cover img" />
+              </div>
+              <div className="book-details-info">
+                <div className="book-details-item title">
+                  <span className="fw-6 fs-24">{book?.title}</span>
+                </div>
+                <div className="book-details-item description">
+                  <span>{book?.description}</span>
+                </div>
+                <div className="book-details-item">
+                  <span className="fw-6">Subject Places: </span>
+                  <span className="text-italic">{book?.subject_places}</span>
+                </div>
+                <div className="book-details-item">
+                  <span className="fw-6">Subject Times: </span>
+                  <span className="text-italic">{book?.subject_times}</span>
+                </div>
+                <div className="book-details-item">
+                  <span className="fw-6">Subjects: </span>
+                  <span>{book?.subjects}</span>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
+        </section>
       </div>
-    </section>
+    </Box>
   );
 };
 

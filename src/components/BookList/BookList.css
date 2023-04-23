@@ -1,8 +1,4 @@
-.booklist,
-.book-details {
-  padding: 3rem 0;
-  background-color: #f8f9fa;
-}
+
 .booklist-content {
   gap: 3rem;
 }
